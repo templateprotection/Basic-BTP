@@ -23,6 +23,11 @@ This simplified scheme consists of two main phases: **Enrollment** and **Authent
 
 ![Scheme Diagram](Images/Scheme_Diagram.png)
 
+## Weaknesses
+- **Data Leakage**: While the exact bits of the cipher cannot be directly determined without the secret key, the server is able to see which authentication bits differ from the enrollment, which may in time reveal details about the vector's entropy. Particularly, the server can use the differences across several users to determine which bits are reliable, similar to an Attack via Record Multiplicity. Cross-user weaknesses like this can be mitigated by performing a client-side random permutation on the enrollment vector for each user, and storing the permute order for future authentications. 
+
+- **Full Access Adversary**: If the adversary has access to both the client and server, they will be able to decrypt the original enrollment `bit_vector` by performing XOR on the client's `secret_key` and the server's `cipher`.
+
 ## Installation
 
 1. Clone the repository:
