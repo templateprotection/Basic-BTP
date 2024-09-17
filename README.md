@@ -10,15 +10,15 @@ My goal is to demonstrate the fundamental concepts of template protection using 
 This simplified scheme consists of two main phases: **Enrollment** and **Authentication**.
 
 ### Enrollment
-1. The biometric data (represented as an embedding `emb1`) is first quantized into a binary vector (`vec1`).
-2. A `secret_key` is generated, which is a random binary vector of the same length as `vec1`.
-3. The client then encrypts the binarized template by XORing `vec1` with the `secret_key` to create `encrypted_vec1`.
-4. The client stores the `secret_key` and sends `encrypted_vec1` to the server for later authentication.
+1. The biometric data (represented as an embedding `embedding1`) is first quantized into a binary vector (`vector1`).
+2. A `secret_key` is generated, which is a random binary vector of the same length as `vector1`.
+3. The client then encrypts the binarized template by XORing `vector1` with the `secret_key` to create `cipher1`.
+4. The client stores the `secret_key` and sends `cipher1` to the server for later authentication.
 
 ### Authentication
-1. During authentication, a new biometric sample (`emb2`) is captured and quantized to `vec2`.
-2. The client XORs `vec2` with the stored `secret_key` to create `encrypted_vec2`.
-3. The server calculates the **Hamming distance** between `encrypted_vec1` (from enrollment) and `encrypted_vec2` (from authentication).
+1. During authentication, a new biometric sample (`embedding2`) is captured and quantized to `vector2`.
+2. The client XORs `vector2` with the stored `secret_key` to create `cipher2`.
+3. The server calculates the **Hamming distance** between `cipher1` (from enrollment) and `cipher2` (from authentication).
 4. If the Hamming distance is below a certain threshold, the user is authenticated.
 
 ![Scheme Diagram](Images/Scheme_Diagram.png)
