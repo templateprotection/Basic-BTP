@@ -21,7 +21,8 @@ This simplified scheme consists of two main phases: **Enrollment** and **Authent
 3. The server calculates the **Hamming distance** between `cipher1` (from enrollment) and `cipher2` (from authentication).
 4. If the Hamming distance is below a certain threshold, the user is authenticated.
 
-![Scheme Diagram](Images/Scheme_Diagram.png)
+<a href="url"><img src="/Images/Scheme_Diagram.png" height='auto' width=80% ></a>
+
 
 ## Weaknesses
 - **Data Leakage**: While the exact bits of the cipher cannot be directly determined without the secret key, the server is able to see which authentication bits differ from the enrollment, which may in time reveal details about the vector's entropy. Particularly, the server can use the differences across several users to determine which bits are reliable, similar to an Attack via Record Multiplicity. Cross-user weaknesses like this can be mitigated by performing a client-side random permutation on the enrollment vector for each user, and storing the permute order for future authentications. 
